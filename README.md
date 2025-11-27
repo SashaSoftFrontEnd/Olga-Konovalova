@@ -1,4 +1,4 @@
-# Olga Konovalova - Professional Portfolio Website
+# Olga Konovalova - Professional Website
 
 A modern, responsive portfolio website for Olga Konovalova, a Marketing and PR expert with extensive experience in corporate environments. The website is built using React and Vite, and implements B.J. Fogg's Behavior Model principles to optimize user engagement and conversion.
 
@@ -105,32 +105,4 @@ olga-konovalova/
 6. **Recommendations** - Client testimonials
 7. **Contact Footer** - Contact information and CTAs
 
-## 🔧 Configuration
 
-### GitHub Pages Base Path
-
-The `vite.config.js` is configured with the correct base path for GitHub Pages deployment:
-
-```javascript
-base: '/olga-konovalova/'
-```
-
-## 📝 License
-
-This project is private and proprietary.
-
-## 👤 Author
-
-**Olga Konovalova**
-- Email: ola.konovalova@gmail.com
-- Phone: +7 (962) 9560669
-
-## 🙏 Acknowledgments
-
-- B.J. Fogg for the Behavior Model framework
-- React and Vite communities
-- React Icons library
-
----
-
-Built with ❤️ using React and Vite
