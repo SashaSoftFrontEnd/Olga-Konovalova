@@ -1,0 +1,103 @@
+/* БАЗОВЕ ОФОРМЛЕННЯ ROOT */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1e1e1e;
+}
+
+/* ЛОГОТИПИ */
+.logo {
+  height: 6em;
+  padding: 1.2em;
+  will-change: filter, transform;
+  transition: filter 300ms ease, transform 300ms ease;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.65));
+  transform: translateY(-4px) scale(1.03);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.75));
+}
+
+/* АНІМАЦІЯ ДЛЯ СПІНУ ЛОГО */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 18s linear;
+  }
+}
+
+/* КАРТОЧКА */
+.card {
+  padding: 2.2em;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  margin-top: 1.8rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ТЕКСТ ДОКУМЕНТАЦІЇ */
+.read-the-docs {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 1.2rem;
+  letter-spacing: 0.3px;
+}
+
+/* СПИСКИ */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ПОСИЛАННЯ */
+a {
+  color: #4fa5ff;           /* основний колір */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+a:hover {
+  color: #ffffff !important;         /* БІЛИЙ КОЛІР ПРИ НАВЕДЕННІ */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.85);   /* мʼяке світіння */
+  text-decoration: none;             /* без підкреслення */
+}
+
+
+/* ДОДАТКОВІ ПОКРАЩЕННЯ */
+:root {
+  --shadow-light: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 12px 26px rgba(0, 0, 0, 0.12);
+  --radius: 14px;
+}
+
+.card {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
