@@ -499,31 +499,22 @@ function App() {
               організації бізнес-подій. Працювала з українськими компаніями у
               галузях виробництва, медицини, інновацій, сервісів та освіти.
             </p>
-            <p>
-              Мій досвід включає розробку та впровадження маркетингових
-              стратегій, запуск нових продуктів, формування комунікацій,
-              створення корпоративного стилю та продюсування заходів.
-            </p>
-
             <div className="benefits-box">
               <h3>Ви отримуєте:</h3>
               <div className="benefits-grid">
                 <div className="benefit-item">
-                  <FaCheckCircle />
                   <div>
                     <strong>Зростання продажів</strong>
                     <p>До 40% за перший квартал</p>
                   </div>
                 </div>
                 <div className="benefit-item">
-                  <FaCheckCircle />
                   <div>
                     <strong>Економію часу</strong>
                     <p>Фокус на вашому бізнесі</p>
                   </div>
                 </div>
                 <div className="benefit-item">
-                  <FaCheckCircle />
                   <div>
                     <strong>Експертизу</strong>
                     <p> років практики</p>

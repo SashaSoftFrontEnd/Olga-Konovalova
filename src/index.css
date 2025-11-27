@@ -363,6 +363,7 @@ body {
 
 .about-text p {
   margin: 0 0 12px;
+  text-align: left;
 }
 
 .benefits-box {
@@ -388,7 +389,8 @@ body {
 
 .benefit-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 

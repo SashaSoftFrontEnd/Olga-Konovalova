@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website for Olga Konovalova, a Marketing and PR expert with extensive experience in corporate environments. The website is built using React and Vite, and implements B.J. Fogg's Behavior Model principles to optimize user engagement and conversion.
 
-## 🎯 Features
+## Features
 
 ### B.J. Fogg's Behavior Model Implementation
 
@@ -30,14 +30,14 @@ The website is designed following B.J. Fogg's Behavior Model, which focuses on t
 - Clear call-to-action text in footer
 - Visual hints on cards ("Click to discuss", "Learn more →")
 
-## 🚀 Technologies Used
+## Technologies Used
 
 - **React 18.3.1** - Modern UI library
 - **Vite 6.0.5** - Fast build tool and dev server
 - **React Icons** - Icon library
 - **CSS3** - Custom styling with animations and gradients
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -50,7 +50,7 @@ cd olga-konovalova
 npm install
 ```
 
-## 🛠️ Development
+## Development
 
 ```bash
 # Start development server
@@ -59,7 +59,7 @@ npm run dev
 # The site will be available at http://localhost:5173
 ```
 
-## 🏗️ Build
+## Build
 
 ```bash
 # Build for production
@@ -69,7 +69,7 @@ npm run build
 npm run preview
 ```
 
-## 📤 Deployment
+## Deployment
 
 The website is deployed to GitHub Pages. To deploy updates:
 
@@ -80,7 +80,7 @@ npm run deploy
 
 The site will be available at: `https://visualGravitySense.github.io/olga-konovalova/`
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 olga-konovalova/
@@ -95,7 +95,7 @@ olga-konovalova/
 └── package.json     # Dependencies and scripts
 ```
 
-## 🎨 Key Sections
+## Key Sections
 
 1. **Hero Section** - Introduction with metrics and primary CTAs
 2. **About Section** - Professional background and achievements

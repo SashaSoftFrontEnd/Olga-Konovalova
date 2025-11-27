@@ -67,22 +67,20 @@
 /* СПИСКИ */
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 /* ПОСИЛАННЯ */
 a {
-  color: #4fa5ff;           /* основний колір */
+  color: #4fa5ff;           
   text-decoration: none;
   font-weight: 600;
   transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 a:hover {
-  color: #ffffff !important;         /* БІЛИЙ КОЛІР ПРИ НАВЕДЕННІ */
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.85);   /* мʼяке світіння */
-  text-decoration: none;             /* без підкреслення */
+  color: #ffffff !important;         
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.85);   
+  text-decoration: none;           
 }
 
 
