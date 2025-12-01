@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import {
   FaArrowUp,
   FaAward,
@@ -179,7 +180,7 @@ const personalInfoData = [
 
 /**
  * =====================================
- * ДАНІ ДЛЯ БЛОКУ "РЕКОМЕНДАЦІЇ"
+ * РЕКОМЕНДАЦІЇ
  * =====================================
 */
 
@@ -208,7 +209,7 @@ const recommendationsData = [
 
 /**
  * =====================================
- * ЧЕК-ЛИСТ «ЧИ ПІДІЙДЕ ВАМ МОЯ ДОПОМОГА?»
+ * ЧЕК-ЛИСТ
  * =====================================
 */
 
@@ -219,7 +220,11 @@ const fitChecklist = [
   { text: "Хочете заощадити час та отримати експертизу", icon: <FaClock /> },
 ];
 
-function App() {
+/* ============================================================
+   ГОЛОВНИЙ КОМПОНЕНТ
+============================================================ */
+
+export default function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
@@ -228,17 +233,18 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
-  // Модалка «подзвонить»
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
   const [callSecondsLeft, setCallSecondsLeft] = useState(30);
 
+  /* ------------------------------------------
+     Анімації, скролл, нотифікації
+  ------------------------------------------- */
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries) =>
         entries.forEach(
           (entry) => entry.isIntersecting && entry.target.classList.add("visible")
-        );
-      },
+        ),
       { threshold: 0.1 }
     );
 
@@ -271,7 +277,9 @@ function App() {
     };
   }, []);
 
-  // Логіка таймера «подзвонить»
+  /* ------------------------------------------
+     Таймер "робот телефонує"
+  ------------------------------------------- */
   useEffect(() => {
     if (!isCallModalOpen) return;
 
@@ -281,7 +289,6 @@ function App() {
       setCallSecondsLeft((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          // Авто-закриття модалки через секунду після завершення таймера
           setTimeout(() => setIsCallModalOpen(false), 1000);
           return 0;
         }
@@ -319,7 +326,6 @@ function App() {
     { id: "contact", label: "Контакти", icon: <FaPhone /> },
   ];
 
-  // Обробник «робот набирає вас»
   const handlePhoneRobotClick = (e) => {
     e.preventDefault();
     setIsCallModalOpen(true);
@@ -354,7 +360,6 @@ function App() {
     },
   ];
 
-  // Допоміжне форматування часу (00:30)
   const formatSeconds = (sec) => {
     const s = Math.max(sec, 0);
     const mm = String(Math.floor(s / 60)).padStart(2, "0");
@@ -366,7 +371,39 @@ function App() {
 
   return (
     <>
+      {/* ======================= */}
+      {/*        HELMET SEO       */}
+      {/* ======================= */}
+
+      <Helmet>
+        <title>Ольга Коновалова — Продюсер ділових заходів, маркетинг і PR</title>
+
+        <meta
+          name="description"
+          content="Продюсер ділових заходів. Маркетинг, PR, організація подій, запуск продуктів, консультації для бізнесу, комплексні стратегії розвитку."
+        />
+        <meta
+          name="keywords"
+          content="продюсер заходів, маркетинг, організація подій, PR, стратегія, запуск продукту"
+        />
+
+        <link rel="canonical" href="https://example.com/" />
+
+        <meta property="og:title" content="Коновалова Ольга — Продюсер ділових заходів" />
+        <meta
+          property="og:description"
+          content="Допомога бізнесу: стратегії, PR, продюсування заходів, запуск нових продуктів."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta name="theme-color" content="#2D5D4E" />
+      </Helmet>
+
+      {/* -------------------------------- */}
       {/* ГОЛОВНА НАВІГАЦІЯ */}
+      {/* -------------------------------- */}
+
       <nav className="main-navigation">
         <div className="nav-container">
           <div className="nav-logo" onClick={scrollToTop}>
@@ -397,7 +434,10 @@ function App() {
         </div>
       </nav>
 
-      {/* Плаваюча кнопка звʼязку */}
+      {/* -------------------------------- */}
+      {/* Плаваюча кнопка */}
+      {/* -------------------------------- */}
+
       {showFloatingCTA && (
         <button
           className={`floating-contact-btn ${
@@ -408,26 +448,33 @@ function App() {
           <FaPhone />
           <span>Звʼязатися</span>
           {showNotification && <span className="notification-badge">!</span>}
-          <span className="availability-indicator">
-            Доступна зараз
-          </span>
+          <span className="availability-indicator">Доступна зараз</span>
         </button>
       )}
 
-      {/* Прогрес-бар прокрутки */}
+      {/* -------------------------------- */}
+      {/* Прогрес-бар */}
+      {/* -------------------------------- */}
+
       <div
         className="scroll-progress-bar"
         style={{ width: `${scrollProgress}%` }}
       ></div>
 
-      {/* Кнопка "Вгору" */}
+      {/* -------------------------------- */}
+      {/* Back to top */}
+      {/* -------------------------------- */}
+
       {showBackToTop && (
         <button className="back-to-top-btn" onClick={scrollToTop}>
           <FaArrowUp />
         </button>
       )}
 
-      {/* Тост про відкриття контакту */}
+      {/* -------------------------------- */}
+      {/* Toast */}
+      {/* -------------------------------- */}
+
       {contactMethod && (
         <div className="success-feedback">
           <FaCheckCircle />
@@ -435,7 +482,10 @@ function App() {
         </div>
       )}
 
+      {/* -------------------------------- */}
       {/* HERO */}
+      {/* -------------------------------- */}
+
       <div className="hero-banner">
         <div className="hero-content">
           <h1>Коновалова Ольга</h1>
@@ -489,7 +539,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* ПРО МЕНЕ */}
+      {/* -------------------------------- */}
+
       <div className="about-section fade-in" id="about">
         <div className="about-content">
           <div className="about-text">
@@ -499,26 +552,21 @@ function App() {
               організації бізнес-подій. Працювала з українськими компаніями у
               галузях виробництва, медицини, інновацій, сервісів та освіти.
             </p>
+
             <div className="benefits-box">
               <h3>Ви отримуєте:</h3>
               <div className="benefits-grid">
                 <div className="benefit-item">
-                  <div>
-                    <strong>Зростання продажів</strong>
-                    <p>До 40% за перший квартал</p>
-                  </div>
+                  <strong>Зростання продажів</strong>
+                  <p>До 40% за перший квартал</p>
                 </div>
                 <div className="benefit-item">
-                  <div>
-                    <strong>Економію часу</strong>
-                    <p>Фокус на вашому бізнесі</p>
-                  </div>
+                  <strong>Економію часу</strong>
+                  <p>Фокус на вашому бізнесі</p>
                 </div>
                 <div className="benefit-item">
-                  <div>
-                    <strong>Експертизу</strong>
-                    <p> років практики</p>
-                  </div>
+                  <strong>Експертизу</strong>
+                  <p>Років практики</p>
                 </div>
               </div>
             </div>
@@ -565,7 +613,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* ЧИ ПІДІЙДЕ ВАМ? */}
+      {/* -------------------------------- */}
+
       <div className="fit-check-section fade-in">
         <h2>Чи підійде вам моя допомога?</h2>
         <p className="section-subtitle">Звірте зі своїми потребами</p>
@@ -590,7 +641,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* ОСОБИСТІ ЯКОСТІ */}
+      {/* -------------------------------- */}
+
       <div className="personal-info-section">
         <div className="personal-info-grid">
           {personalInfoData.map((section, i) => (
@@ -605,7 +659,9 @@ function App() {
               >
                 {section.icon}
               </div>
+
               <h3>{section.title}</h3>
+
               <ul>
                 {section.items.map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -616,7 +672,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* ПРОЄКТИ */}
+      {/* -------------------------------- */}
+
       <div className="projects-section fade-in" id="projects">
         <h2>Проєкти</h2>
         <p className="section-subtitle">
@@ -640,9 +699,7 @@ function App() {
             >
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              <div className="project-cta-hint">
-                Натисніть, щоб обговорити
-              </div>
+              <div className="project-cta-hint">Натисніть, щоб обговорити</div>
             </div>
           ))}
         </div>
@@ -654,7 +711,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* ПОСЛУГИ */}
+      {/* -------------------------------- */}
+
       <div className="services-section fade-in" id="services">
         <h2>Послуги</h2>
         <p className="section-subtitle">
@@ -691,7 +751,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* РЕКОМЕНДАЦІЇ */}
+      {/* -------------------------------- */}
+
       <div className="recommendations-section">
         <h2>Рекомендації</h2>
 
@@ -714,7 +777,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* FAQ */}
+      {/* -------------------------------- */}
+
       <div className="faq-section fade-in" id="faq">
         <h2>Поширені запитання</h2>
         <p className="section-subtitle">
@@ -747,7 +813,10 @@ function App() {
         </div>
       </div>
 
+      {/* -------------------------------- */}
       {/* ФУТЕР */}
+      {/* -------------------------------- */}
+
       <footer className="footer fade-in" id="contact">
         <div className="footer-content">
           <h2>Звʼяжіться зі мною</h2>
@@ -771,7 +840,6 @@ function App() {
           </p>
 
           <div className="footer-contact">
-            {/* Кнопка з роботом-дзвінком */}
             <a
               href="tel:+380000000000"
               className="contact-link"
@@ -817,9 +885,7 @@ function App() {
             <a href="tel:+380000000000" onClick={handlePhoneRobotClick}>
               <button className="btn-secondary">
                 Подзвонити зараз
-                <span className="btn-instruction">
-                  Я набираю ваш номер…
-                </span>
+                <span className="btn-instruction">Я набираю ваш номер…</span>
               </button>
             </a>
           </div>
@@ -835,7 +901,10 @@ function App() {
         </div>
       </footer>
 
+      {/* -------------------------------- */}
       {/* МОДАЛКА: РОБОТ ДЗВОНИТЬ */}
+      {/* -------------------------------- */}
+
       {isCallModalOpen && (
         <div className="call-modal-backdrop">
           <div className="call-modal">
@@ -843,13 +912,15 @@ function App() {
               <FaPhone />
               <h3>Розумний помічник телефонує вам</h3>
             </div>
+
             <div className="call-modal-body">
               <p className="call-modal-text-main">
                 «Я набираю ваш номер… Залишайтесь на лінії.»
               </p>
+
               <p className="call-modal-text-sub">
-                Якщо не зручно говорити — просто скиньте дзвінок або
-                напишіть мені у відповідь.
+                Якщо не зручно говорити — просто скиньте дзвінок або напишіть
+                мені у відповідь.
               </p>
 
               <div className="call-modal-timer">
@@ -879,5 +950,3 @@ function App() {
     </>
   );
 }
-
-export default App;
