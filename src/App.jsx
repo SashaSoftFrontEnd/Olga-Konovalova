@@ -558,15 +558,12 @@ export default function App() {
               <div className="benefits-grid">
                 <div className="benefit-item">
                   <strong>Зростання продажів</strong>
-                  <p>До 40% за перший квартал</p>
                 </div>
                 <div className="benefit-item">
                   <strong>Економію часу</strong>
-                  <p>Фокус на вашому бізнесі</p>
                 </div>
                 <div className="benefit-item">
                   <strong>Експертизу</strong>
-                  <p>Років практики</p>
                 </div>
               </div>
             </div>
