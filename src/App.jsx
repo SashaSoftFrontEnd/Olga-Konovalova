@@ -488,7 +488,7 @@ export default function App() {
 
       <div className="hero-banner">
         <div className="hero-content">
-          <h1>Коновалова Ольга</h1>
+          <h1>Ольга Коновалова</h1>
           <p className="hero-subtitle">Продюсер ділових заходів, маркетинг і PR</p>
 
           <div className="hero-metrics">
