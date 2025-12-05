@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
   FaArrowUp,
@@ -265,7 +265,7 @@ export default function App() {
       );
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     const timer = setTimeout(() => setShowNotification(false), 5000);
@@ -273,6 +273,7 @@ export default function App() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.querySelectorAll(".fade-in").forEach((el) => observer.unobserve(el));
+      observer.disconnect();
       clearTimeout(timer);
     };
   }, []);
@@ -299,32 +300,38 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isCallModalOpen]);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop = useCallback(() => 
+    window.scrollTo({ top: 0, behavior: "smooth" }), 
+  []);
 
-  const scrollToContact = () => {
+  const scrollToContact = useCallback(() => {
     document.querySelector(".footer")?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
-  };
+  }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = useCallback((id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
-  };
+  }, []);
 
-  const handleContactClick = (method) => {
+  const handleContactClick = useCallback((method) => {
     setContactMethod(method);
     setTimeout(() => setContactMethod(null), 2000);
-  };
+  }, []);
 
-  const toggleFaq = (index) =>
-    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  const toggleFaq = useCallback((index) =>
+    setOpenFaqIndex((prev) => (prev === index ? null : index)),
+  []);
 
-  const navItems = [
-    { id: "about", label: "Про мене", icon: <FaUser /> },
-    { id: "projects", label: "Проєкти", icon: <FaChartLine /> },
-    { id: "services", label: "Послуги", icon: <FaBriefcase /> },
-    { id: "contact", label: "Контакти", icon: <FaPhone /> },
-  ];
+  const navItems = useMemo(
+    () => [
+      { id: "about", label: "Про мене", icon: <FaUser /> },
+      { id: "projects", label: "Проєкти", icon: <FaChartLine /> },
+      { id: "services", label: "Послуги", icon: <FaBriefcase /> },
+      { id: "contact", label: "Контакти", icon: <FaPhone /> },
+    ],
+    []
+  );
 
   const handlePhoneRobotClick = (e) => {
     e.preventDefault();
