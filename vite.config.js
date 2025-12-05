@@ -1,28 +1,54 @@
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import react from "@vitejs/plugin-react";
+import path from "path";
+import { fileURLToPath } from "url";
+import { defineConfig } from "vite";
 
-export default defineConfig({
-  plugins: [
-    react() // <-- ничего не добавляем вручную
-  ],
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-  base: '/olga-konovalova/',
+export default defineConfig(({ mode }) => {
+  const isProd = mode === "production";
 
-  server: {
-    open: true,
-    port: 5173,
-    strictPort: true
-  },
+  return {
+    plugins: [
+      react({
+        jsxRuntime: "automatic",
+        include: ["src/**/*.{jsx,tsx}"],
+      }),
+    ],
 
-  build: {
-    sourcemap: true,
-    chunkSizeWarningLimit: 900
-  },
+    base: "/olga-konovalova/",
 
-  resolve: {
-    alias: {
-      '@': '/src'
-    }
-  }
+    resolve: {
+      alias: {
+        "src": path.resolve(__dirname, "src"),
+        "@assets": path.resolve(__dirname, "src/assets"),
+      },
+    },
+
+    server: {
+      open: true,
+      port: 5173,
+      strictPort: false, 
+      host: true,
+    },
+
+    build: {
+      sourcemap: !isProd ? "inline" : false,
+      chunkSizeWarningLimit: 900,
+      minify: isProd ? "esbuild" : false,
+      outDir: "dist",
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            react: ["react", "react-dom"],
+          },
+        },
+      },
+    },
+
+    esbuild: {
+      legalComments: "none",
+    },
+  };
 });
-
